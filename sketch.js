@@ -134,7 +134,7 @@ man2.scale=0.13
  seaweed4=createSprite(990,436+50,30,30)
  seaweed4.addImage(seaweed);
  seaweed4.scale=0.03
- octopus=createSprite(183,600,100,80)
+ octopus=createSprite(220,600,100,80)
  octopus.addImage(octopusimg)
  octopus.scale=0.07
 
@@ -190,8 +190,6 @@ function draw(){
     if(keyDown(LEFT_ARROW) && gamestate==="play"){
         lifeboat.x=lifeboat.x-7
     
-    }if(frameCount%5===0){
-soundlimit--
     }
     if (frameCount % 60 == 0 && timer > 0 && gamestate==="play") { 
         timer --;
@@ -253,21 +251,24 @@ soundlimit--
     }
     wall12.rotateeffect();
     whirlpool2.rotationSpeed=150
-    
+    if(rescued===2){
+        gamestate="win"
+    }
     wall12.visibility();
     wall13.visibility();
   wall11.visibility();
     wall7.visibility();
-
+    
+    shark1.setCollider("RECTANGLE",-10,0,970,260)
     drawSprites();
-    text(mouseX,100,50)
-    text(mouseY,50,50)
+    //text(mouseX,100,50)
+    //text(mouseY,50,50)
     fill("#00ff00")
     textSize(50)
     text("TIME LEFT:"+timer,100,50)
     fill("#fcfcfc")
     textSize(50)
-    text(rescued,200,150)
+    text("Saved:"+rescued,200,150)
     
     if(gamestate==="win"){
        
